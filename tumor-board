@@ -1,0 +1,10 @@
+TumorBoard {
+  roles patient, physician, radiologist, parthologist, board
+  parameters out ID key, out visit, out examine, out send, out findings, out recommendation, out report, out biopsy, out discuss
+  
+  patient -> physician : visit [out ID]
+  physician -> patient : examine [out ID]
+  
+  physician -> radiologist : send [out ID]
+  radiologist -> physician : findings [out ID]
+}
