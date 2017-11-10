@@ -1,0 +1,5 @@
+Pay {
+  roles Payer , Payee
+  parameters in ID key , in amount
+  Payer -> Payee : payM[ in ID , in amount ]
+}

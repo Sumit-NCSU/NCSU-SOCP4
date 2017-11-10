@@ -1,6 +1,6 @@
-Hello P
+Hello {
   roles Self, Other
-  parameter out greeting key
+  parameters out greeting key
 
   Self -> Other: hi[out greeting key]
 }
