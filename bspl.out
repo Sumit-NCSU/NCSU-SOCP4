@@ -1,0 +1,13 @@
+(virtenv) sumit@sumit-lubuntu:~/soc/p4/virtenv/protocheck$ bspl -h
+Traceback (most recent call last):
+  File "/home/sumit/soc/p4/virtenv/bin/bspl", line 11, in <module>
+    load_entry_point('protocheck==1.0.0', 'console_scripts', 'bspl')()
+  File "/home/sumit/soc/p4/virtenv/lib/python3.5/site-packages/pkg_resources/__init__.py", line 561, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File "/home/sumit/soc/p4/virtenv/lib/python3.5/site-packages/pkg_resources/__init__.py", line 2631, in load_entry_point
+    return ep.load()
+  File "/home/sumit/soc/p4/virtenv/lib/python3.5/site-packages/pkg_resources/__init__.py", line 2291, in load
+    return self.resolve()
+  File "/home/sumit/soc/p4/virtenv/lib/python3.5/site-packages/pkg_resources/__init__.py", line 2297, in resolve
+    module = __import__(self.module_name, fromlist=['__name__'], level=0)
+ImportError: No module named 'protocheck'

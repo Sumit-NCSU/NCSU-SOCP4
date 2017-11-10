@@ -1,0 +1,44 @@
+sumit@sumit-lubuntu:~/soc/p4$ sudo -H pip3 install ./protocheck
+[sudo] password for sumit: 
+Processing ./protocheck
+Collecting boolexpr (from protocheck==1.0.0)
+  Downloading boolexpr-2.4-cp35-cp35m-manylinux1_x86_64.whl (2.9MB)
+    100% |████████████████████████████████| 2.9MB 646kB/s 
+Collecting configargparse (from protocheck==1.0.0)
+  Downloading ConfigArgParse-0.12.0.tar.gz (41kB)
+    100% |████████████████████████████████| 51kB 5.7MB/s 
+Collecting grako (from protocheck==1.0.0)
+  Downloading grako-3.99.9-py2.py3-none-any.whl (82kB)
+    100% |████████████████████████████████| 92kB 10.4MB/s 
+Collecting pycosat (from protocheck==1.0.0)
+  Downloading pycosat-0.6.1.tar.gz (59kB)
+    100% |████████████████████████████████| 61kB 8.9MB/s 
+Collecting pyeda (from protocheck==1.0.0)
+  Downloading pyeda-0.28.0.tar.gz (478kB)
+    100% |████████████████████████████████| 481kB 3.1MB/s 
+Collecting pytest (from protocheck==1.0.0)
+  Downloading pytest-3.2.3-py2.py3-none-any.whl (187kB)
+    100% |████████████████████████████████| 194kB 8.4MB/s 
+Collecting cffi>=1.5.0 (from boolexpr->protocheck==1.0.0)
+  Downloading cffi-1.11.2-cp35-cp35m-manylinux1_x86_64.whl (419kB)
+    100% |████████████████████████████████| 419kB 3.0MB/s 
+Collecting py>=1.4.33 (from pytest->protocheck==1.0.0)
+  Downloading py-1.4.34-py2.py3-none-any.whl (84kB)
+    100% |████████████████████████████████| 92kB 9.4MB/s 
+Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from pytest->protocheck==1.0.0)
+Collecting pycparser (from cffi>=1.5.0->boolexpr->protocheck==1.0.0)
+  Downloading pycparser-2.18.tar.gz (245kB)
+    100% |████████████████████████████████| 256kB 5.4MB/s 
+Building wheels for collected packages: configargparse, pycosat, pyeda, pycparser
+  Running setup.py bdist_wheel for configargparse ... done
+  Stored in directory: /root/.cache/pip/wheels/6a/40/6b/6d9924b7757fff15a7296256f9d6d27a9600beabd387f057af
+  Running setup.py bdist_wheel for pycosat ... done
+  Stored in directory: /root/.cache/pip/wheels/27/79/f2/5b1877314d8927a1068e924f363a7dae6b9d4d61ebf420b7f8
+  Running setup.py bdist_wheel for pyeda ... done
+  Stored in directory: /root/.cache/pip/wheels/c9/d0/f4/0d86c63b4e3e5b66b3afeb09f61c4ecfe838f6b9855f6dd9c8
+  Running setup.py bdist_wheel for pycparser ... done
+  Stored in directory: /root/.cache/pip/wheels/95/14/9a/5e7b9024459d2a6600aaa64e0ba485325aff7a9ac7489db1b6
+Successfully built configargparse pycosat pyeda pycparser
+Installing collected packages: pycparser, cffi, boolexpr, configargparse, grako, pycosat, pyeda, py, pytest, protocheck
+  Running setup.py install for protocheck ... done
+Successfully installed boolexpr-2.4 cffi-1.11.2 configargparse-0.12.0 grako-3.99.9 protocheck-1.0.0 py-1.4.34 pycosat-0.6.1 pycparser-2.18 pyeda-0.28.0 pytest-3.2.3
