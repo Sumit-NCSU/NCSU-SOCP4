@@ -1,10 +1,22 @@
 TumorBoard {
-  roles patient, physician, radiologist, parthologist, board
-  parameters out ID key, out visit, out examine, out send, out findings, out recommendation, out report, out biopsy, out discuss
+  roles PA, PH, RA, PT, TB
+  parameters out vID key, out PA, out rFindings, out recommendation, out tissue, out report, out pFindings, out tFindings
   
-  patient -> physician : visit [out ID]
-  physician -> patient : examine [out ID]
+  PA -> PH: visit[out vID]
   
-  physician -> radiologist : send [out ID]
-  radiologist -> physician : findings [out ID]
+  PH -> RA: send[out vID, out PA]
+  RA -> PH: send[out vID, out rFindings, out recommendation]
+
+  RA -> PT: send[out vID, out tissue, out rFindings]
+  PT -> PH: send[out vID, out report, out pFindings]
+
+  PT -> TB: send[out vID, out report, out rFindings]
+
+  TB -> PH: inform[out vID, out tFindings]
+  TB -> RA: inform[out vID, out tFindings]
+  TB -> PT: inform[out vID, out tFindings]
+
+  PH -> PA: discuss[out vID, out rFindings]
+  PH -> PA: discuss[out vID, out pFindings]
+  PH -> PA: discuss[out vID, out tFindings]
 }
