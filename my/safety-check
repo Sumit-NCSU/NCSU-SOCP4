@@ -1,0 +1,13 @@
+Safety-Check {
+  roles A, B, C, D
+  parameters out ID key, out msg1, out msg2
+
+  A -> B: visit[out ID]
+
+  B -> A: send[in ID, out msg1]
+  B -> C: send[in ID, out msg1]
+  
+  A -> D: send[in ID, in msg1, out msg2]
+  C -> D: send[in ID, in msg1, out msg2]
+  D -> C: send[in ID, in msg1, out msg2]
+}

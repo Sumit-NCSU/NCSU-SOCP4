@@ -1,7 +1,24 @@
 Tumor-Board {
-  roles Patient, Physician
-  parameters out pID key, out vID key, out findings
+  roles P, Physician, R, Pathologist, T
+  parameters out ID key, out outcome
+  private suspicious, findings, biopsy, tissueSpecimen, biopsyFindings, studyFindings, report, tbFindings
 
-  Patient -> Physician: visit[out pID, out vID]
-  Physician -> Patient: discuss[in pID, in vID, out findings]
+  P -> Physician: visit[out ID key] // Patient visits Physician
+
+  Physician -> P: discuss[in ID, out outcome, out suspicious] // If the case is no suspicious
+  Physician -> R: send[in ID, out suspicious] // If the case is suspicious then recommend Radiologist
+
+  R -> Physician: send[in ID, out findings] // If no suspicious calcifications found
+  R -> Physician: recommend[in ID, out findings, out biopsy] // If suspicious calcifications found then recommend biopsy.
+
+  R -> Pathologist: send[in ID, in biopsy, out tissueSpecimen, out biopsyFindings] // Send tissue specimen and findings to pathologist
+
+  Pathologist -> Physician: send[in ID, out studyFindings, out report] // If findings agree
+  Pathologist -> T: send[in ID, in biopsyFindings, out report] // If findings diagree then send to tumor board with radiologist's findings
+
+  T -> Physician: inform[in ID, out tbFindings]
+  T -> R: inform[in ID, in tbFindings]
+  T -> Pathologist: inform[in ID, in tbFindings]
+
+  Physician -> P: discuss[in ID, in tbFindings, out outcome]
 }

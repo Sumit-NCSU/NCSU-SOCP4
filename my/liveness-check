@@ -1,0 +1,9 @@
+Live-Check {
+  roles A, B, C
+  parameters out ID key, out message
+
+  B -> A: initiate[out ID, out message]
+  A -> B: send[in ID, in message]
+
+  A -> C: sendMessage[in ID, in message]
+}

@@ -1,0 +1,7 @@
+TB {
+  roles P, H
+  parameters out ID key, out outcome
+
+  P -> H: visit[out ID key]
+  H -> P: discuss[in ID, out outcome]
+}
