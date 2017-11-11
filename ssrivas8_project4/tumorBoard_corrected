@@ -16,9 +16,9 @@ Tumor-Board {
   Pathologist -> Physician: send[in ID, out studyFindings, out report] // If findings agree
   Pathologist -> T: send[in ID, in biopsyFindings, out report] // If findings diagree then send to tumor board with radiologist's findings
 
-  T -> Physician: inform[in ID, out tbFindings]
-  T -> R: inform[in ID, in tbFindings]
-  T -> Pathologist: inform[in ID, in tbFindings]
+  T -> Physician: inform[in ID, out tbFindings] // tumor board informs findings to physician 
+  T -> R: inform[in ID, in tbFindings] // tumor board informs findings to radiologist
+  T -> Pathologist: inform[in ID, in tbFindings] // tumor board informs findings to pathologist 
 
-  Physician -> P: discuss[in ID, in tbFindings, out outcome]
+  Physician -> P: discuss[in ID, in tbFindings, out outcome] // Physician discusses findings with patient.
 }

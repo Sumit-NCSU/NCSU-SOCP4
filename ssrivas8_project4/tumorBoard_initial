@@ -1,0 +1,24 @@
+Tumor-Board {
+  roles P, Physician, R, Pathologist, T
+  parameters out ID key, out outcome
+  private suspicious, findings, biopsy, tissueSpecimen, biopsyFindings, studyFindings, report, tbFindings
+
+  P -> Physician: visit[out ID key]
+
+  Physician -> P: discuss[in ID, out outcome, out suspicious]
+  Physician -> R: send[in ID, out suspicious]
+
+  R -> Physician: send[in ID, out findings]
+  R -> Physician: recommend[in ID, out findings, out biopsy]
+
+  R -> Pathologist: send[in ID, in biopsy, out tissueSpecimen, out biopsyFindings]
+
+  Pathologist -> Physician: send[in ID, out studyFindings, out report]
+  Pathologist -> T: send[in ID, in biopsyFindings, out report]
+
+  T -> Physician: inform[in ID, out tbFindings]
+  T -> R: inform[in ID, in tbFindings]
+  T -> Pathologist: inform[in ID, in tbFindings]
+
+  Physician -> P: discuss[in ID, in tbFindings, out outcome]
+}
