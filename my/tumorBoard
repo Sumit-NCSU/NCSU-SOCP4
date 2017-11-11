@@ -1,7 +1,7 @@
 Tumor-Board {
   roles Patient, Physician
-  parameters out vID key, out findings
+  parameters out pID key, out vID key, out findings
 
-  Patient -> Physician: visit[out vID]
-  Physician -> Patient: discuss[in vID, out findings]
+  Patient -> Physician: visit[out pID, out vID]
+  Physician -> Patient: discuss[in pID, in vID, out findings]
 }

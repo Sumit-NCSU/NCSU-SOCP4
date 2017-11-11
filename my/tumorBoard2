@@ -1,0 +1,19 @@
+Tumor-Board {
+  roles Patient, Physician, Radiologist, Pathologist, TumorBoard
+  parameters out patientID key, out visitID key, out findings, out biopsyRecommendation, out radFindings, out report, out pathFindings, out pathAgree, tbFindings
+
+  Patient -> Physician: visit[out patientID, out visitID]
+  Physician -> Radiologist: sendPatient[in patientID]
+
+  Radiologist -> Physician: sendFindings[in patientID, out radFindings, out biopsyRecommendation]
+  Radiologist -> Pathologist: sendSpecimen[in patientID, in biopsyRecommendation, in radFindings, out pathAgree, out pathFindings]
+
+  Pathologist -> Physician: sendReport[in patientID, out report, in pathFindings, in pathAgree]
+  Pathologist -> TumorBoard: sendReport[in patientID, out report, in radFindings, in pathAgree]
+
+  TumorBoard -> Physician: inform[in patientID, in pathAgree, out tbFindings]
+  TumorBoard -> Radiologist: inform[in patientID, in pathAgree, in tbFindings]
+  TumorBoard -> Pathologist: inform[in patientID, in pathAgree, in tbFindings]
+  
+  Physician -> Patient: discuss[in patientID, in visitID, out findings]
+}
