@@ -1,7 +1,27 @@
-TB {
-  roles P, H
-  parameters out ID key, out outcome
+Tumor-Board {
+  roles P, Physician, R, Pathologist, T
+  parameters out ID key, out outcome, out findings
+  private suspicious, biopsy, tissueSpecimen, studyFindings, biopsyFindings, report, tbFindings
 
-  P -> H: visit[out ID key]
-  H -> P: discuss[in ID, out outcome]
+  P -> Physician: visit[out ID key]
+
+  Physician -> P: discuss [in ID, out outcome, out suspicious]
+  Physician -> R: send [in ID, out suspicious]
+
+  R -> Physician: send [in ID, in suspicious, out findings]
+  R -> Physician: recommend [in ID, in suspicious, out findings, out biopsy] 
+  R -> Pathologist: send [in ID, in biopsy, out tissueSpecimen, out biopsyFindings]
+
+  Pathologist -> Physician: send [in ID, in tissueSpecimen, in biopsyFindings, out studyFindings, out report]
+  Pathologist -> T: send [in ID, in biopsyFindings, out report]
+
+  T -> Physician: inform [in ID, in biopsyFindings, in report, out tbFindings] 
+  T -> R: inform [in ID, in tbFindings]
+  T -> Pathologist: inform [in ID, in tbFindings] 
+
+  // Physician discusses findings with patient
+  Physician -> P: discuss [in ID, in suspicious, in findings, out outcome]
+  Physician -> P: discuss [in ID, in studyFindings, in report, out outcome]
+  Physician -> P: discuss [in ID, in tbFindings, out outcome]
 }
+

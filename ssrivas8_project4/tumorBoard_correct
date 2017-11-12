@@ -5,17 +5,25 @@ Tumor-Board {
 
   P -> Physician: visit[out ID key] // Patient visits Physician
 
-  Physician -> P: discuss[in ID, out outcome, out findings] // If the case is not suspicious
+  Physician -> P: discuss[in ID, out outcome, out suspicious] // If the case is not suspicious
   Physician -> R: send[in ID, out suspicious] // If the case is suspicious then recommend Radiologist
 
-  R -> Physician: send[in ID, in suspicious, out outcome, out findings] // If no suspicious calcifications found
+  R -> Physician: send[in ID, in suspicious, out findings] // If no suspicious calcifications found
+
   R -> Physician: recommend[in ID, in suspicious, out findings, out biopsy] // If suspicious calcifications found then recommend biopsy.
+
   R -> Pathologist: send[in ID, in biopsy, out tissueSpecimen, out biopsyFindings] // Send tissue specimen and findings to pathologist
 
   Pathologist -> Physician: send[in ID, in biopsyFindings, out studyFindings, out report] // If findings agree
+
   Pathologist -> T: send[in ID, in biopsyFindings, out report] // If findings diagree then send to tumor board with radiologist's findings
 
-  T -> Physician: inform[in ID, in biopsyFindings, in report, out tbFindings, out outcome] // tumor board informs findings to physician 
+  T -> Physician: inform[in ID, in biopsyFindings, in report, out tbFindings] // tumor board informs findings to physician 
   T -> R: inform[in ID, in tbFindings] // tumor board informs findings to radiologist
   T -> Pathologist: inform[in ID, in tbFindings] // tumor board informs findings to pathologist 
+
+  // Physician discusses findings with patient
+  Physician -> P: discuss[in ID, in suspicious, out outcome]
+  Physician -> P: discuss[in ID, in studyFindings, in report, out outcome]
+  Physician -> P: discuss[in ID, in tbFindings, out outcome]
 }
